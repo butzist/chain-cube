@@ -18,22 +18,22 @@ fn main() {
     println!("{:?}", place_remaining(state));
 }
 
-fn place_remaining(state: SearchState) -> Result<SearchState, ()> {
+fn place_remaining(state: SearchState) -> Option<SearchState> {
     if state.chain.clone().next().is_none() {
-        return Ok(state);
+        return Some(state);
     }
 
     for dir in state.solution.last().unwrap().orthogonal() {
         match place_element(state.clone(), dir).and_then(|next_state| place_remaining(next_state)) {
-            Ok(solved_state) => return Ok(solved_state),
-            Err(_) => (),
+            Some(solved_state) => return Some(solved_state),
+            None => (),
         }
     }
 
-    Err(())
+    None
 }
 
-fn place_element(mut new_state: SearchState, direction: Direction) -> Result<SearchState, ()> {
+fn place_element(mut new_state: SearchState, direction: Direction) -> Option<SearchState> {
     //let mut new_state = state.clone();
     let next = new_state.chain.next().unwrap();
     new_state.solution.push(direction);
@@ -51,16 +51,16 @@ fn place_element(mut new_state: SearchState, direction: Direction) -> Result<Sea
 
         if let Some(cube_value) = new_state.cube.get_mut(cube_index) {
             if *cube_value != 0 {
-                return Err(());
+                return None;
             }
 
             *cube_value = new_state.index;
         } else {
-            return Err(());
+            return None;
         };
     }
 
-    Ok(new_state)
+    Some(new_state)
 }
 
 #[derive(Debug, Clone)]
