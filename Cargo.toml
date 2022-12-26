@@ -5,5 +5,29 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+# Enable a small amount of optimization in debug mode
+[profile.dev]
+opt-level = 1
+
+# Enable high optimizations for dependencies (incl. Bevy), but not for our code:
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.release]
+opt-level = "s"
+lto = "thin"
+
 [dependencies]
 ndarray = "0.15.6"
+rand = "0.8"
+ignore-result = "0.2"
+bevy_asset_loader = "0.14.1"
+
+[dependencies.bevy]
+version = "0.9.1"
+default-features = false
+features = ["render", "bevy_asset", "bevy_winit", "png", "x11"]
+
+[features]
+default = ["fast-compile"]
+fast-compile = ["bevy/dynamic"]
