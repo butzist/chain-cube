@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Chain Cube Solver</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <h1>Chain Cube Solver</h1>
+
+    <canvas id="bevy" width="850" height="650" alt="Bevy" style="display: none">
+    </canvas>
+
+    <div>
+        <h3>Links</h3>
+
+        <ul>
+            <li><a href="https://github.com/butzist/chain-cube/">GitHub project</a></li>
+        </ul>
+    </div>
+
+    <script type="module">
+        import init from "./chain-cube.js";
+        init().then(res => res.start());
+    </script>
+</body>
+
+</html>
