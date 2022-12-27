@@ -35,7 +35,6 @@ fn place_remaining(state: SearchState) -> Option<SearchState> {
 }
 
 fn place_element(mut new_state: SearchState, direction: Direction) -> Option<SearchState> {
-    //let mut new_state = state.clone();
     let next = new_state.chain.next().unwrap();
     new_state.solution.push(direction);
 
