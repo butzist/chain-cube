@@ -1,4 +1,4 @@
-# Chain-cube Solver
+# Snake-cube puzzle Solver
 
 Solver for a (physical) puzzle
 
