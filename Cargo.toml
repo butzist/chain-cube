@@ -21,7 +21,7 @@ lto = "thin"
 ndarray = "0.15.6"
 rand = "0.8"
 ignore-result = "0.2"
-bevy_asset_loader = "0.14.1"
+bevy_asset_loader = "0.17.0"
 
 [dependencies.bevy]
 version = "0.9.1"
